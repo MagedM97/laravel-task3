@@ -39,7 +39,7 @@ class CartController extends Controller
         
         session()->save();
         $lines = session()->get('carts');
-        return view('cart', compact('lines',));
+        return redirect()->route('cart');
 
         
     }
@@ -77,20 +77,5 @@ static function total()
 
         return $shipping + $sum;
 }
-    function process(Request $request, $id)
-    {
-        $product = Product::findorFail($id);
-        $cart = Session::get('carts', []);
-        for ($i = 0; $i < count($cart); $i++) {
-            dd($request->has('process=plus'));
-            if ($cart[$i]['product']['id'] === $product['id'] && $request->has('process=plus')) {
-               
-                $cart[$i]['quantity'] += 1;
-            }
-            elseif ($cart[$i]['product']['id'] === $product['id'] && $request->has('process=minus')){
-                $cart[$i]['quantity'] -= 1;
-            }
-
-        }
-    }
+   
 }

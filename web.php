@@ -25,9 +25,9 @@ Route::get('/add-product', [HomeController::class, 'add_product']);
 Route::get('/admin', [AdminController::class, 'view_admin']);
 Route::get('/w', function(){return view('welcome');});
 Route::get('/checkout',[CheckoutController::class, 'view_checkout']) ;
-Route::get('/cart', [CartController::class, 'view_cart']) ;
+Route::get('/cart', [CartController::class, 'view_cart'])->name('cart') ;
 Route::get('/addproduct/{id}', [CartController::class, 'addProduct']);
-Route::get('/addproduct/{id}/{process}', [CartController::class,'process']);
+
 
 Route::prefix('/admin')->group (function () {
 
